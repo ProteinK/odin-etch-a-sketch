@@ -1,24 +1,35 @@
 const container = document.querySelector('.container');
 
-let divs = [];
+const createGrid = (squaresPerSide) => {
+  const totalSquares = squaresPerSide * squaresPerSide;
+  const squareSize = container.clientWidth / squaresPerSide;
+  for (let i = 0; i < totalSquares; i++) {
 
-for (let i = 0; i < 256; i++) {
-  let div = document.createElement('div');
-  div.classList.add('square');
-  div.style.width = '50px';
-  div.style.height = '50px';
+    let div = document.createElement('div');
+    div.classList.add('square');
+    div.style.width = `${squareSize}px`;
+    div.style.height = `${squareSize}px`;
 
-  div.addEventListener('mouseenter', e => {
-    e.target.classList.add('square-hovered');
-  });
+    div.addEventListener('mouseenter', e => {
+      e.target.classList.add('square-hovered');
+    });
 
-  container.appendChild(div);
-  divs.push(div);
-}
+    container.appendChild(div);
+  }
+};
+
+createGrid(16);
 
 const button = document.querySelector('#clear');
 button.addEventListener('click', e => {
-  divs.forEach(div => {
-    div.classList.remove('square-hovered');
-  });
+  const squaresPerSide = Number(prompt('Squares per side: '));
+  if (squaresPerSide > 100) {
+    return;
+  }
+
+  // Remove all children
+  container.innerHTML = '';
+
+
+  createGrid(squaresPerSide);
 });
