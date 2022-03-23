@@ -10,13 +10,15 @@ body {
     flex-wrap: wrap;
     width: 800px;
     padding: 0px;
-    border: 2px solid red;
+    border: 2px solid rgb(255, 0, 0);
 }
 
 .square {
     margin: 0px;
 }
 
-.square-hovered {
-    background-color: black;
+button {
+    padding: 10px 50px;
+    font-size: 1.5rem;
+    font-weight: 700;
 }

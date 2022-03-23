@@ -1,6 +1,10 @@
 const container = document.querySelector('.container');
 
-const createGrid = (squaresPerSide) => {
+const getRandomInt = max => {
+  return Math.floor(Math.random() * max);
+}
+
+const createGrid = squaresPerSide => {
   const totalSquares = squaresPerSide * squaresPerSide;
   const squareSize = container.clientWidth / squaresPerSide;
   for (let i = 0; i < totalSquares; i++) {
@@ -9,9 +13,20 @@ const createGrid = (squaresPerSide) => {
     div.classList.add('square');
     div.style.width = `${squareSize}px`;
     div.style.height = `${squareSize}px`;
+    div.style.backgroundColor = `rgb(255, 255, 255)`;
+    div['data-color'] = 255;
 
     div.addEventListener('mouseenter', e => {
-      e.target.classList.add('square-hovered');
+      // random color
+      // const r = getRandomInt(256);
+      // const g = getRandomInt(256);
+      // const b = getRandomInt(256);
+      // e.target.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+
+      // add 10% black
+      let newColor = e.target['data-color'] - 25.5;
+      e.target.style.backgroundColor = `rgb(${newColor}, ${newColor}, ${newColor})`;
+      e.target['data-color'] = newColor;
     });
 
     container.appendChild(div);
